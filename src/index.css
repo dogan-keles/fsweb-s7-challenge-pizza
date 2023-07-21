@@ -1,13 +1,48 @@
+@import "./components/PizzaForm.css";
+@import "./components/Success.css";
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.pizza-info {
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pizza-rate {
+  text-align: center;
+}
+.col-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  color: red;
+}
+
+.extra-items {
+  display: flex;
+  flex-direction: column;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.order-note {
+  max-width: 540px;
+  display: flex;
+  justify-content: left;
+  margin-left: auto;
+  margin-right: auto;
 }

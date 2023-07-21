@@ -1,0 +1,11 @@
+.success {
+  background-color: #ce2829;
+  height: 100vh;
+  text-align: center;
+}
+.success p {
+  color: #faf7f2;
+  font-size: 4rem;
+  font-family: "Barlow Condensed", sans-serif;
+  text-decoration: none;
+}
