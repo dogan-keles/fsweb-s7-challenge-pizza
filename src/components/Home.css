@@ -6,7 +6,7 @@
   background-size: cover;
   display: flex;
   justify-content: center;
-  padding-top: 3%;
+
   text-align: center;
   color: white;
   font-family: "Barlow", sans-serif;
@@ -34,4 +34,5 @@
 .orderPizza:hover {
   color: whitesmoke;
   background-color: red;
+  color: #faf7f2;
 }

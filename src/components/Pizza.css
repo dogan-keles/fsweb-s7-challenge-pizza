@@ -1,0 +1,29 @@
+.pizza-form {
+  background-color: white;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  color: red;
+  width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.itemList {
+  color: black;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  width: 33%;
+  flex-wrap: wrap;
+}
+.amountAndCost {
+  display: flex;
+  flex-direction: row;
+  width: 720px;
+}
+.checkboxes {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+}
