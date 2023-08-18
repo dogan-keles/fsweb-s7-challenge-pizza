@@ -1,13 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Success from "./components/Success";
 import Header from "./components/Header";
 import Pizza from "./components/Pizza";
+import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./components/Header.css";
 import "./components/Pizza.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./components/Footer.css";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
+      <Footer />
     </div>
   );
 };

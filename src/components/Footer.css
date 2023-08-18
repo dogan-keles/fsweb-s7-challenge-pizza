@@ -1,0 +1,14 @@
+.footer-row {
+  border: 2px, solid black;
+  border-style: solid;
+  border-width: 1px 1px;
+}
+.footer-columns {
+  border: 2px, solid black;
+  border-style: solid;
+  border-width: 1px 1px;
+}
+.footer-columns img {
+  max-width: 200px;
+  background-color: black;
+}

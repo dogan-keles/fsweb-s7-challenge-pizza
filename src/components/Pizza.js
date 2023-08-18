@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./Pizza.css";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { Button, Label, Input, FormFeedback, FormGroup } from "reactstrap";
 import * as Yup from "yup";
+import axios from "axios";
 
 function Pizza(props) {
   const itemList = [
@@ -22,16 +23,18 @@ function Pizza(props) {
     "Sarımsak",
     "Mantar",
   ];
+  const history = useHistory();
   const pizzaDefaultPrice = 85.5;
   const [orderAmount, setOrderAmount] = useState(1);
   const [total, setTotal] = useState(pizzaDefaultPrice);
   const [addedItems, setAddedItems] = useState([]);
   const [isFormValid, setFormValid] = useState(false);
+  const [responsedData, setResponsedData] = useState({});
   const [pizzaData, setPizzaData] = useState({
     nameSurname: "",
     pizzaSize: "",
     pizzaThickness: "",
-    extras: [],
+    extras: "",
     orderNote: "",
   });
   //////////////////////////////////////////
@@ -47,13 +50,14 @@ function Pizza(props) {
 
     extras: Yup.array()
       .max(10, "En fazla 10 malzeme seçebilirsiniz.")
-      .min(1, "Test ediyoruz"),
+      .min(1, "En az 1 malzeme seçiniz."),
     orderNote: Yup.string(),
   });
   /////////////////////////////////////////////////////////////////
 
   ///////////////////////////////////////////////////////////////////////////////////////
-  function orderAmountDec() {
+  function orderAmountDec(e) {
+    e.preventDefault();
     if (orderAmount > 1) {
       setOrderAmount(orderAmount - 1);
     } else {
@@ -61,7 +65,8 @@ function Pizza(props) {
     }
     // console.log("Sipariş adeti azaltıldı!");
   }
-  function orderAmountInc() {
+  function orderAmountInc(e) {
+    e.preventDefault();
     setOrderAmount(orderAmount + 1);
     //console.log("Sipariş adeti arttırıldı!");
   }
@@ -115,25 +120,45 @@ function Pizza(props) {
       });
       validateForm(name, value);
     }
+    calculated();
   }
 
   ////////////////////////////////////////////////////////////////
   useEffect(() => {
     formSchema.isValid(pizzaData).then((valid) => setFormValid(valid));
-  }, [pizzaData]);
+    calculated();
+  }, [pizzaData, orderAmount]);
 
   /////////////////////////////////////////////////////////////
   function handleSubmit(e) {
     e.preventDefault();
+
+    axios
+      .post("https://reqres.in/api/users", pizzaData)
+      .then((response) => {
+        console.log("Başarılı:", response.data);
+        setPizzaData(response.data);
+        console.log("testing", pizzaData);
+        //setPizzaData(response.data);
+        history.push({
+          pathname: "/success",
+          state: { pizzaData: pizzaData },
+        });
+      })
+      .catch((error) => {
+        console.error("Hata:", error);
+      });
   }
-  ///////////////////////////////////////////////////////
-  useEffect(() => {
-    calculated();
-  }, [orderAmount, pizzaData, addedItems]);
 
   //////////////////////////////////////////////////////
   return (
     <div className="pizza-order">
+      <div className="adv-form-banner">
+        <img
+          src="src\Assets\adv-aseets\adv-form-banner.png"
+          alt="Adv-Form-Banner"
+        />
+      </div>
       <nav>
         <a href="/#">Ana Sayfa - </a>
         <a href="/#">Seçenekler - </a>
@@ -163,9 +188,9 @@ function Pizza(props) {
         </div>
       </div>
       <form id="pizza-form" onSubmit={handleSubmit}>
-        <div className="col-2">
-          <div>
-            <FormGroup>
+        <div className="pizza-form">
+          <div className="radio-select">
+            <FormGroup className="radio">
               <p>Boyut Seç *</p>
               <Label>
                 <Input
@@ -210,8 +235,8 @@ function Pizza(props) {
                 invalid={!!errors.pizzaThickness}
               >
                 <option value="">-Hamur Kalınlığı Seç-</option>
-                <option value="ince">İnce</option>
-                <option value="normal">Normal</option>
+                <option value="İnce">İnce</option>
+                <option value="Normal">Normal</option>
               </Input>
             </Label>
             {errors.pizzaThickness && pizzaData.pizzaThickness === "" && (
@@ -223,7 +248,7 @@ function Pizza(props) {
         </div>
         <br />
         <br />
-        <FormGroup>
+        <FormGroup className="checkboxALL">
           {itemList.map((item, id) => (
             <div key={id} className="checkboxes">
               <Input
@@ -284,19 +309,14 @@ function Pizza(props) {
             <h1>Sipariş Toplamı</h1>
             <p>Seçimler {totalExtraCost} TL</p>
             <p>Toplam {total} TL</p>{" "}
-            <Link
-              to={isFormValid ? "/success" : "#"}
-              onClick={isFormValid ? undefined : (e) => e.preventDefault()}
+            <Button
+              id="order-button"
+              type="submit"
+              onSubmit={handleSubmit}
+              disabled={!isFormValid}
             >
-              <Button
-                id="order-button"
-                type="submit"
-                onSubmit={handleSubmit}
-                disabled={!isFormValid}
-              >
-                SİPARİŞ VER
-              </Button>
-            </Link>
+              SİPARİŞ VER
+            </Button>
           </div>
         </div>
       </form>
