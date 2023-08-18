@@ -1,4 +1,5 @@
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -41,4 +42,13 @@ code {
   justify-content: left;
   margin-left: auto;
   margin-right: auto;
+  .ty-logo {
+    background-color: #ce2829;
+    display: flex;
+    justify-content: center;
+  }
+  .ty-logo img {
+    width: 30vh;
+    padding-top: 2rem;
+  }
 }

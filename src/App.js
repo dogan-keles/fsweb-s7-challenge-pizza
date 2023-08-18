@@ -1,14 +1,4 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Success from "./components/Success";
-import Header from "./components/Header";
-import Pizza from "./components/Pizza";
-import Footer from "./components/Footer";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./components/Header.css";
-import "./components/Pizza.css";
-import "./components/Footer.css";
+import React from "react";
 
 const App = () => {
   return (
@@ -20,16 +10,11 @@ const App = () => {
             <Pizza />
           </Route>
 
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <Route path="/success">
-            <Success />
-          </Route>
-        </Switch>
-      </Router>
-      <Footer />
-    </div>
+  return (
+    <>
+      <h1>Teknolojik Yemekler</h1>
+      <p>Burdaki kodu silip kendi headerınızı ekleyebilirsiniz</p>
+    </>
   );
 };
 export default App;
