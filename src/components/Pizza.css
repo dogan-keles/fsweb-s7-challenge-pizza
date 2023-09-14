@@ -53,6 +53,7 @@
 .radio-select {
   display: flex;
   flex-direction: row;
+}
 .pizzaBody {
   width: 720px;
   margin-left: auto;
